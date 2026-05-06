@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Orbitron:wght@500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-font: 'Michroma', 'Orbitron', sans-serif;
+  --bg-charcoal: #0f1115;
+  --grid-line: rgba(0, 0, 0, 0.14);
+  --grid-line-dark: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.light-grid {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.dark-charcoal {
+  background-color: var(--bg-charcoal);
+}
+
+.dark-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-line-dark) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line-dark) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.net-card:active {
+  background-image:
+    linear-gradient(to right, var(--grid-line-dark) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line-dark) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+}
+
+.brand-lockup {
+  font-family: var(--brand-font);
+  letter-spacing: 0.28em;
+}
