@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, type Ref } from 'vue'
+import { inject, type Ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { Sun, Moon } from 'lucide-vue-next'
 import { useSEO } from '../composables/useSEO'
@@ -9,47 +9,40 @@ const toggleTheme = inject<() => void>('toggleTheme')!
 
 useSEO('Home', 'Another day to arrange your day and start fresh')
 
-const darkBlobs = [
-  { id: 1, style: 'top:10%;left:15%;width:200px;height:110px;background:rgba(255,255,255,0.25);filter:blur(38px);animation:float 20s infinite ease-in-out' },
-  { id: 2, style: 'top:20%;right:20%;width:240px;height:150px;background:rgba(165,180,252,0.2);filter:blur(48px);animation:float 25s infinite ease-in-out 2s' },
-  { id: 3, style: 'bottom:25%;left:25%;width:210px;height:130px;background:rgba(255,255,255,0.15);filter:blur(42px);animation:float 30s infinite ease-in-out 4s' },
-  { id: 4, style: 'top:40%;right:10%;width:170px;height:90px;background:rgba(165,180,252,0.3);filter:blur(32px);animation:float 22s infinite ease-in-out 1s' },
-  { id: 5, style: 'bottom:15%;right:30%;width:200px;height:120px;background:rgba(255,255,255,0.18);filter:blur(40px);animation:float 28s infinite ease-in-out 3s' },
+const blobs = [
+  { id: 1, style: 'top:10%;left:15%;width:220px;height:120px;background:rgba(255,255,255,0.06);filter:blur(50px);animation:float 20s infinite ease-in-out' },
+  { id: 2, style: 'top:20%;right:20%;width:260px;height:160px;background:rgba(165,180,252,0.08);filter:blur(60px);animation:float 25s infinite ease-in-out 2s' },
+  { id: 3, style: 'bottom:25%;left:25%;width:230px;height:140px;background:rgba(255,255,255,0.05);filter:blur(55px);animation:float 30s infinite ease-in-out 4s' },
+  { id: 4, style: 'top:40%;right:10%;width:190px;height:100px;background:rgba(165,180,252,0.07);filter:blur(45px);animation:float 22s infinite ease-in-out 1s' },
+  { id: 5, style: 'bottom:15%;right:30%;width:210px;height:130px;background:rgba(255,255,255,0.06);filter:blur(52px);animation:float 28s infinite ease-in-out 3s' },
 ]
-
-const lightBlobs = [
-  { id: 1, style: 'top:10%;left:15%;width:200px;height:110px;background:rgba(224,231,255,0.7);filter:blur(38px);animation:float 20s infinite ease-in-out' },
-  { id: 2, style: 'top:20%;right:20%;width:240px;height:150px;background:rgba(221,214,254,0.6);filter:blur(48px);animation:float 25s infinite ease-in-out 2s' },
-  { id: 3, style: 'bottom:25%;left:25%;width:210px;height:130px;background:rgba(224,231,255,0.55);filter:blur(42px);animation:float 30s infinite ease-in-out 4s' },
-  { id: 4, style: 'top:40%;right:10%;width:170px;height:90px;background:rgba(221,214,254,0.65);filter:blur(32px);animation:float 22s infinite ease-in-out 1s' },
-  { id: 5, style: 'bottom:15%;right:30%;width:200px;height:120px;background:rgba(224,231,255,0.6);filter:blur(40px);animation:float 28s infinite ease-in-out 3s' },
-]
-
-const blobs = computed(() => (isDark.value ? darkBlobs : lightBlobs))
 </script>
 
 <template>
   <div
-    :class="[
-      'min-h-screen transition-colors duration-500',
-      isDark ? 'bg-black text-white' : 'bg-white text-gray-900',
-    ]"
+    class="min-h-screen relative overflow-hidden"
+    style="
+      background-image: url('/splash-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    "
   >
+    <div
+      class="absolute inset-0 transition-colors duration-500"
+      :class="isDark ? 'bg-black/60' : 'bg-black/35'"
+    />
+
     <button
       @click="toggleTheme"
-      :class="[
-        'fixed top-8 right-8 p-4 rounded-full z-50 transition-all',
-        isDark
-          ? 'bg-white/10 hover:bg-white/20 text-white'
-          : 'bg-gray-900/10 hover:bg-gray-900/20 text-gray-900',
-      ]"
+      class="fixed top-8 right-8 p-4 rounded-full z-50 transition-all bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm"
       aria-label="Toggle theme"
     >
       <Sun v-if="isDark" :size="24" />
       <Moon v-else :size="24" />
     </button>
 
-    <div class="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
+    <div class="relative min-h-screen flex items-center justify-center px-6">
       <div
         v-for="blob in blobs"
         :key="blob.id"
@@ -59,32 +52,22 @@ const blobs = computed(() => (isDark.value ? darkBlobs : lightBlobs))
 
       <div class="relative z-10 text-center max-w-4xl">
         <h1
-          :class="[
-            'text-7xl md:text-9xl font-bold mb-8 tracking-wider',
-            isDark ? 'text-white' : 'text-gray-900',
-          ]"
-          style="font-family: Michroma, sans-serif"
+          class="text-7xl md:text-9xl font-bold mb-8 tracking-wider text-white"
+          style="
+            font-family: Michroma, sans-serif;
+            text-shadow: 0 2px 40px rgba(0, 0, 0, 0.6);
+          "
         >
           DAWWN TODO
         </h1>
 
-        <p
-          :class="[
-            'text-xl md:text-2xl mb-12 leading-relaxed',
-            isDark ? 'text-gray-300' : 'text-gray-700',
-          ]"
-        >
+        <p class="text-xl md:text-2xl mb-12 leading-relaxed text-white/75">
           Embrace the morning, organize your thoughts.
         </p>
 
         <RouterLink
           to="/tasks"
-          :class="[
-            'inline-block px-12 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105',
-            isDark
-              ? 'bg-white text-black hover:bg-blue-100'
-              : 'bg-gray-900 text-white hover:bg-gray-800',
-          ]"
+          class="inline-block px-12 py-4 font-semibold text-lg transition-all transform hover:scale-105 bg-white text-black hover:bg-gray-100"
           style="border-radius: 10px"
         >
           Begin Your Day
