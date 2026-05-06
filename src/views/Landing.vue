@@ -30,12 +30,13 @@ const blobs = [
   >
     <div
       class="absolute inset-0 transition-colors duration-500"
-      :class="isDark ? 'bg-black/60' : 'bg-black/35'"
+      :class="isDark ? 'bg-black/65' : 'bg-white/40'"
     />
 
     <button
       @click="toggleTheme"
-      class="fixed top-8 right-8 p-4 rounded-full z-50 transition-all bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm"
+      class="fixed top-8 right-8 p-4 rounded-full z-50 transition-all backdrop-blur-sm"
+      :class="isDark ? 'bg-white/10 hover:bg-white/20 text-white' : 'bg-black/10 hover:bg-black/20 text-gray-900'"
       aria-label="Toggle theme"
     >
       <Sun v-if="isDark" :size="24" />
@@ -52,22 +53,27 @@ const blobs = [
 
       <div class="relative z-10 text-center max-w-4xl">
         <h1
-          class="text-7xl md:text-9xl font-bold mb-8 tracking-wider text-white"
+          class="text-7xl md:text-9xl font-bold mb-8 tracking-wider"
+          :class="isDark ? 'text-white' : 'text-gray-900'"
           style="
             font-family: Michroma, sans-serif;
-            text-shadow: 0 2px 40px rgba(0, 0, 0, 0.6);
+            text-shadow: 0 2px 40px rgba(0, 0, 0, 0.3);
           "
         >
           DAWWN TODO
         </h1>
 
-        <p class="text-xl md:text-2xl mb-12 leading-relaxed text-white/75">
+        <p
+          class="text-xl md:text-2xl mb-12 leading-relaxed"
+          :class="isDark ? 'text-white/75' : 'text-gray-800/80'"
+        >
           Embrace the morning, organize your thoughts.
         </p>
 
         <RouterLink
           to="/tasks"
-          class="inline-block px-12 py-4 font-semibold text-lg transition-all transform hover:scale-105 bg-white text-black hover:bg-gray-100"
+          class="inline-block px-12 py-4 font-semibold text-lg transition-all transform hover:scale-105"
+          :class="isDark ? 'bg-white text-black hover:bg-gray-100' : 'bg-gray-900 text-white hover:bg-gray-700'"
           style="border-radius: 10px"
         >
           Begin Your Day

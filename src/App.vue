@@ -11,6 +11,7 @@ const isDark = ref<boolean>(
 
 watchEffect(() => {
   localStorage.setItem('theme', isDark.value ? 'dark' : 'light')
+  document.documentElement.classList.toggle('dark', isDark.value)
 })
 
 const toggleTheme = () => {
